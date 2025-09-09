@@ -31,7 +31,6 @@ install_fonts() {
   wget -nv $IOSEVKA_NERD_FONT_URL -O $IOSEVKA_TAR
   tar -xf $IOSEVKA_TAR $IOSEVKA_NERD_FONT -C $PWD && rm $IOSEVKA_TAR  
 
-  dst="$PWD/.local/share/fonts"
   mkdir -p $dst
   mv $PWD/$IOSEVKA_NERD_FONT $dst
 }
