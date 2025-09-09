@@ -8,6 +8,8 @@ lvim.builtin.cmp.window.documentation = {
 lvim.builtin.nvimtree.setup.view.side = "right"
 lvim.builtin.bufferline.options.right_mouse_command = "vert sbuffer %d"
 lvim.builtin.lualine.sections.lualine_a = { "mode" }
+lvim.builtin.terminal.direction = "vertical"
+lvim.builtin.terminal.size = 55
 
 vim.opt.relativenumber = true
 vim.opt.colorcolumn = "100"
@@ -75,6 +77,4 @@ lvim.builtin.which_key.mappings["]"] = {
   name = "Tools",
   t = {"<cmd>TodoTelescope<CR>", "Todos"}
 }
-
-lvim.builtin.which_key.mappings["e"] = {":NvimTreeFocus<CR>", "Explorer"}
 
