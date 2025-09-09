@@ -1,0 +1,19 @@
+#!/bin/bash
+# rclone bisync --interactive "$@" zzvandex:music/ ~/Music/
+
+updown=$1
+shift
+case $updown in
+  up ) 
+    read -p "Sync zzvandex:music from ~/Music/? (y/n) " yn
+    if [ "$yn" = "y" ]; then
+      rclone copy --interactive "$@" ~/Music/ zzvandex:music/
+    fi
+    ;;
+  down ) 
+    read -p "Sync ~/Music/ from zzvandex:music? (y/n) " yn
+    if [ "$yn" = "y" ]; then
+      rclone copy --interactive "$@" zzvandex:music/ ~/Music/
+    fi
+    ;;
+esac

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if pgrep -x rofi > /dev/null; then
+  pkill -x rofi > /dev/null
+else
+  rofi -x11 -normal-window -modi "menu:rofi-power-menu --choices=shutdown/reboot/suspend/logout" -show combi
+fi

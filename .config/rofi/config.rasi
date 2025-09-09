@@ -1,0 +1,11 @@
+configuration {
+  font: "Iosevka Nerd Font 16";
+	modes: "menu,drun";
+	show-icons: true;
+	terminal: "alacritty";
+	combi-modes: "menu,drun";
+  combi-hide-mode-prefix: true;
+  steal-focus: true;
+  matching: "regex";
+}
+@theme "Arc-Dark"
