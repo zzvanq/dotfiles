@@ -6,7 +6,8 @@ BACKUP_DIR="$HOME/.dotfiles-backup/$(date +%s)"
 BACKUP_ANSWER="n"
 IOSEVKA_NERD_FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Iosevka.tar.xz"
 IOSEVKA_NERD_FONT="IosevkaNerdFont-SemiBold.ttf"
-NEOVIM_URL="https://github.com/neovim/neovim/releases/download/v0.9.5/nvim.appimage"
+NEOVIM_VERSION="v0.9.5"
+NEOVIM_URL="https://github.com/neovim/neovim/releases/download/$NEOVIM_VERSION/nvim.appimage"
 LV_BRANCH="release-1.4/neovim-0.9" 
 LV_URL="https://raw.githubusercontent.com/LunarVim/LunarVim/$LV_BRANCH/utils/installer/install.sh"
 
@@ -40,12 +41,12 @@ echo ""
 
 install_nvim() {
   if [ "$(command -v nvim)" ]; then
-    if [ "$(nvim --version | head -n 1 | cut -d ' ' -f 2)" = "v0.9.5" ]; then
+    if [ "$(nvim --version | head -n 1 | cut -d ' ' -f 2)" = $NEOVIM_VERSION ]; then
       echo "Nvim is already installed"
       return
     fi
   fi
-  dst=$PWD/.local/bin/nvim
+  dst=$HOME/.local/bin/nvim
   wget -nv $NEOVIM_URL -O $dst
   chmod 744 $dst
 }
