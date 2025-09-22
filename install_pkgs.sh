@@ -2,24 +2,33 @@
 
 set -e
 
+PKGS_ALL="alacritty rofi rhythmbox"
+
 function install_pkgs {
-  pkgs="$@"
+  pkgs_filtered="$@"
   if [ $(command -v dnf) ]; then
-    sudo dnf -y install $pkgs
-  elif [ $(command -v apt) ]; then
-    sudo apt install -y $pkgs
-  elif [ $(command -v pacman) ]; then
-    sudo pacman -Sy --noconfirm $pkgs
+    sudo dnf install  $pkgs_filtered
+  # elif [ $(command -v apt) ]; then
+  #   sudo apt install -y $pkgs_filtered
+  # elif [ $(command -v pacman) ]; then
+  #   sudo pacman -Sy --noconfirm $pkgs_filtered
   else
     echo "No supported package manager found"
     return 1
   fi
 }
 
-if [ $(command -v rofi) ]; then
-  echo "Rofi is already installed"
-  exit 0
-fi
+pkgs_filtered=""
+for pkg in $PKGS_ALL; do
+  if [ $(command -v $pkg) ]; then
+    echo "$pkg is already installed"
+    continue
+  fi
+  pkgs_filtered="$pkg $pkgs_filtered"
+done
 
-echo "Installing rofi.."
-install_pkgs rofi
+if [ -n "$pkgs_filtered" ]; then
+  echo ""
+  echo "Installing pkgs: $pkgs_filtered"
+  install_pkgs $pkgs_filtered
+fi

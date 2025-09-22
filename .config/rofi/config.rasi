@@ -1,11 +1,27 @@
 configuration {
   font: "Iosevka Nerd Font 16";
-	modes: "menu,drun";
-	show-icons: true;
-	terminal: "alacritty";
-	combi-modes: "menu,drun";
+  modes: "drun,run,ssh";
+  show-icons: true;
+  combi-modes: "drun,run,ssh";
   combi-hide-mode-prefix: true;
   steal-focus: true;
   matching: "regex";
+  display-combi: "";
+  run-shell-command: '{terminal} --hold -e {cmd}';
+  ssh-command: "{terminal} -e {ssh-client} root@{host}";
 }
-@theme "Arc-Dark"
+
+@theme "/home/leri/.local/share/rofi/themes/android_notification.rasi"
+
+window {
+  width: 10%;
+}
+
+textbox-prompt-colon {
+ str: "";
+}
+
+listview {
+  lines: 1;
+  scrollbar: false;
+}

@@ -3,5 +3,5 @@
 if pgrep -x rofi > /dev/null; then
   pkill -x rofi > /dev/null
 else
-  rofi -x11 -normal-window -modi "menu:rofi-power-menu --choices=shutdown/reboot/suspend" -show combi
+  rofi -x11 -normal-window -show combi
 fi

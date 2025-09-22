@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ "$(easyeffects -s output)" = "Mono" ]; then
+    easyeffects -l "Default"
+else
+    easyeffects -l "Mono"
+fi

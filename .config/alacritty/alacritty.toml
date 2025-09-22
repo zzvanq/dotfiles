@@ -1,11 +1,21 @@
+[general]
+import = ["~/.config/alacritty/themes/papercolor_dark.toml"]
 
 [font.normal]
 family = "Iosevka Nerd Font"
 style = "Semi Bold"
 
 [font]
-size = 14
+size = 15
+
+[window]
+opacity = 0.8
 
 [window.dimensions]
 columns = 120
 lines = 30
+
+[keyboard]
+bindings = [
+  {key = "C", mods = "Alt", action = "ToggleViMode"},
+]

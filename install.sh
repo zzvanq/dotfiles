@@ -2,12 +2,14 @@
 
 set -e
 
+SCRIPT_DIR="$( cd "$( dirname "$BASH_SOURCE[0]" )" && pwd )"
+
 steps=(
-  "install_lvim.sh"
-  "install_pkgs.sh"
-  "install_fonts.sh"
-  "install_dots.sh"
-  "install_bashrc.sh"
+  "$SCRIPT_DIR/install_lvim.sh"
+  "$SCRIPT_DIR/install_pkgs.sh"
+  "$SCRIPT_DIR/install_fonts.sh"
+  "$SCRIPT_DIR/install_dots.sh"
+  "$SCRIPT_DIR/install_bashrc.sh"
 )
 
 for step in "${steps[@]}"; do
