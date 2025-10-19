@@ -22,6 +22,6 @@ textbox-prompt-colon {
 }
 
 listview {
-  lines: 1;
+  lines: 3;
   scrollbar: false;
 }

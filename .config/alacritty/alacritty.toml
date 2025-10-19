@@ -1,5 +1,4 @@
-[general]
-import = ["~/.config/alacritty/themes/papercolor_dark.toml"]
+import = ["./iceberg-dark.toml"]
 
 [font.normal]
 family = "Iosevka Nerd Font"
@@ -9,7 +8,7 @@ style = "Semi Bold"
 size = 15
 
 [window]
-opacity = 0.8
+opacity = 0.9
 
 [window.dimensions]
 columns = 120

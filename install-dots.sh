@@ -11,7 +11,7 @@ backup_answer="n"
 read -p "Do you want to backup existing files? [y*/n] " backup_answer
 
 process_file() {
-  if [ -f "$2" ]; then
+  if [ -f "$2" ] || [ -L "$2" ]; then
     if [ "$backup_answer" = "y" ]; then
       backup=$(dirname "$BACKUP_DIR/$1")
       mkdir -p $backup
@@ -23,7 +23,7 @@ process_file() {
     fi
   fi
   echo "[OK] File $2 is installed."
-  cp "$SCRIPT_DIR/$1" "$2"
+  ln -s "$SCRIPT_DIR/$1" "$2"
 }
 
 traverse_and_cp() {
