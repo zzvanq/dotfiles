@@ -18,5 +18,3 @@ install_nvim() {
   chmod 744 $DST
 }
 install_nvim
-echo ""
-

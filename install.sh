@@ -5,11 +5,11 @@ set -e
 SCRIPT_DIR="$( cd "$( dirname "$BASH_SOURCE[0]" )" && pwd )"
 
 steps=(
-  "$SCRIPT_DIR/install_nvim.sh"
-  "$SCRIPT_DIR/install_pkgs.sh"
-  "$SCRIPT_DIR/install_fonts.sh"
-  "$SCRIPT_DIR/install_dots.sh"
-  "$SCRIPT_DIR/install_bashrc.sh"
+  "$SCRIPT_DIR/install-nvim.sh"
+  "$SCRIPT_DIR/install-pkgs.sh"
+  "$SCRIPT_DIR/install-fonts.sh"
+  "$SCRIPT_DIR/install-dots.sh"
+  "$SCRIPT_DIR/install-bashrc.sh"
 )
 
 for step in "${steps[@]}"; do
