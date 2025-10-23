@@ -8,10 +8,10 @@ function install_pkgs {
   pkgs_filtered="$@"
   if [ $(command -v dnf) ]; then
     sudo dnf install  $pkgs_filtered
+  elif [ $(command -v pacman) ]; then
+    sudo pacman -Sy --noconfirm $pkgs_filtered
   # elif [ $(command -v apt) ]; then
   #   sudo apt install -y $pkgs_filtered
-  # elif [ $(command -v pacman) ]; then
-  #   sudo pacman -Sy --noconfirm $pkgs_filtered
   else
     echo "No supported package manager found"
     return 1
