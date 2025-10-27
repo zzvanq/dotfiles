@@ -1,5 +1,3 @@
-import = ["./iceberg-dark.toml"]
-
 [font.normal]
 family = "Iosevka Nerd Font"
 style = "Semi Bold"

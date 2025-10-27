@@ -1,8 +1,8 @@
 configuration {
   font: "Iosevka Nerd Font 16";
-  modes: "drun,run,ssh";
+  modes: "combi";
   show-icons: true;
-  combi-modes: "drun,run,ssh";
+  combi-modes: "drun,window,ssh";
   combi-hide-mode-prefix: true;
   steal-focus: true;
   matching: "regex";
@@ -11,17 +11,9 @@ configuration {
   ssh-command: "{terminal} -e {ssh-client} root@{host}";
 }
 
-@theme "/home/leri/.local/share/rofi/themes/android_notification.rasi"
-
-window {
-  width: 10%;
-}
+@theme "/usr/share/rofi/themes/dmenu.rasi"
 
 textbox-prompt-colon {
  str: "";
 }
 
-listview {
-  lines: 3;
-  scrollbar: false;
-}

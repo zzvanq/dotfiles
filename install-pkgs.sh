@@ -2,7 +2,7 @@
 
 set -e
 
-PKGS_ALL="alacritty rofi rhythmbox"
+PKGS_ALL="alacritty rofi"
 
 function install_pkgs {
   pkgs_filtered="$@"
