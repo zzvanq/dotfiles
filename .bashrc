@@ -6,5 +6,5 @@ export VISUAL=nvim
 alias vim=nvim
 alias vi=nvim
 alias v=nvim
-alias ll='ls -la'
+alias ll='ls -la --color=auto'
 alias vts="vt scan file -sw --include=last_analysis_stats "

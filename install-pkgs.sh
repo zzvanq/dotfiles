@@ -1,17 +1,17 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 
-PKGS_ALL="alacritty rofi"
+PKGS_ALL="alacritty rofi playerctl"
 
 function install_pkgs {
   pkgs_filtered="$@"
-  if [ $(command -v dnf) ]; then
-    sudo dnf install  $pkgs_filtered
-  elif [ $(command -v pacman) ]; then
-    sudo pacman -Sy --noconfirm $pkgs_filtered
-  # elif [ $(command -v apt) ]; then
-  #   sudo apt install -y $pkgs_filtered
+  if [ $(command -v xbps-install) ]; then
+    sudo xbps-install -S $pkgs_filtered
+  # elif [ $(command -v pacman) ]; then
+  #   sudo pacman -Sy --noconfirm $pkgs_filtered
+  # elif [ $(command -v dnf) ]; then
+  #   sudo dnf install  $pkgs_filtered
   else
     echo "No supported package manager found"
     return 1

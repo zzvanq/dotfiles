@@ -1,22 +1,20 @@
 # lock on autologin
 exec swaylock -f --indicator-idle-visible -c 000000
 
-# for_window configs
-for_window [app_id=".*"] inhibit_idle fullscreen
-
+### for_window configs
+for_window [all] inhibit_idle fullscreen
+for_window [app_id="org.qbittorrent.qBittorrent"] floating enable
 for_window [app_id="pcmanfm-qt"] floating enable
 for_window [app_id="AmneziaVPN"] floating enable
-for_window [app_id="com.saivert.pwvucontrol"] floating enable
+for_window [app_id="org.pulseaudio.pavucontrol"] floating enable
+for_window [app_id="com.github.hluk.copyq"] floating enable
 for_window [app_id="org.telegram.desktop"] floating enable
 for_window [app_id="org.kde.kruler"] floating enable
+for_window [title="Picture-in-picture"] floating enable
 
-focus_follows_mouse no
-default_border pixel 2
-hide_edge_borders smart
-
-# workspace assigns
+### assigns
+assign [app_id="rhythmbox"] "R"
 assign [class="steam"] "G"
-assign [app_id="org.gnome.Rhythmbox3"] "R"
 
 ### Variables
 set $mod Mod4
@@ -27,12 +25,15 @@ set $right l
 set $term alacritty
 set $menu rofi-run
 
-# swaymsg -t get_outputs
-output HDMI-A-2 resolution 2560x1440 position 0,0
-output eDP-1 disable
-# mode 3840x2160@144Hz position 2560,0 
+focus_follows_mouse no
+default_border pixel 2
+hide_edge_borders smart
 
-# Apps to run
+output HDMI-A-2 resolution 2560x1440@144Hz position 0,0
+output eDP-1 disable
+# mode 3840x2160 position 2560,0 
+
+### Apps to run
 exec swayidle -w \
           timeout 300 'swaylock -f --indicator-idle-visible -c 000000' \
           timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
@@ -48,13 +49,10 @@ input "type:keyboard" {
 }
 
 ### Key bindings
-    # Start a terminal
     bindsym $mod+Return exec $term
 
-    # Kill focused window
     bindsym $mod+x kill
 
-    # Start your launcher
     bindsym $mod+d exec $menu
 
     bindsym $mod+Alt+l exec swaylock -f --indicator-idle-visible -c 000000
@@ -65,7 +63,6 @@ input "type:keyboard" {
 
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
-    # Move your focus around
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
     bindsym $mod+$up focus up
@@ -75,7 +72,6 @@ input "type:keyboard" {
     bindsym $mod+Up focus up
     bindsym $mod+Right focus right
 
-    # Move the focused window with the same, but add Shift
     bindsym $mod+Shift+$left move left
     bindsym $mod+Shift+$down move down
     bindsym $mod+Shift+$up move up
@@ -84,53 +80,35 @@ input "type:keyboard" {
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
-#
+
 # Workspaces:
-#
-    # Switch to workspace
     bindsym $mod+1 workspace "W"
     bindsym $mod+2 workspace "T"
-    bindsym $mod+3 workspace "R"
-    bindsym $mod+4 workspace "G"
+    bindsym $mod+3 workspace "G"
+    bindsym $mod+4 workspace "R"
     bindsym $mod+5 workspace number 5
     bindsym $mod+6 workspace number 6
-    # Move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace "W"
     bindsym $mod+Shift+2 move container to workspace "T"
-    bindsym $mod+Shift+3 move container to workspace "R"
-    bindsym $mod+Shift+4 move container to workspace "G"
+    bindsym $mod+Shift+3 move container to workspace "G"
+    bindsym $mod+Shift+4 move container to workspace "R"
     bindsym $mod+Shift+5 move container to workspace number 5
     bindsym $mod+Shift+6 move container to workspace number 6
-#
+
 # Layout stuff:
-#
     bindsym $mod+b splith
     bindsym $mod+v splitv
 
-    # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
     bindsym $mod+w layout tabbed
     bindsym $mod+e layout toggle split
-
-    # Make the current focus fullscreen
     bindsym $mod+f fullscreen
-
-    # Toggle the current focus between tiling and floating mode
     bindsym $mod+Shift+space floating toggle
-
-    # Swap focus between the tiling area and the floating area
     bindsym $mod+space focus mode_toggle
-
-    # Move focus to the parent container
     bindsym $mod+a focus parent
-#
-# Scratchpad:
-#
-    # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
 
-    # Show the next scratchpad window or hide the focused scratchpad window.
-    # If there are multiple scratchpad windows, this command cycles through them.
+# Scratchpad:
+    bindsym $mod+Shift+minus move scratchpad
     bindsym $mod+minus scratchpad show
 
 mode "resize" {
@@ -145,20 +123,22 @@ mode "resize" {
     bindsym Left resize grow width 10px
 
     bindsym $mod+c mode "default"
-    bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
 #
 # Utilities:
 #
+    bindsym --no-repeat $mod+Home exec playerctl -p rhythmbox play-pause
+    bindsym $mod+Prior exec playerctl -p rhythmbox previous
+    bindsym $mod+Next exec playerctl -p rhythmbox previous
     bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
     bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
     bindsym --locked XF86AudioRaiseVolume exec [ $(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}' | tr -d '%') -ge 150 ] || pactl set-sink-volume \@DEFAULT_SINK@ +5%
     bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
-    bindsym $mod+F12 exec wayfreeze --after-freeze-cmd 'grim -g "$(slurp)" - | wl-copy --type image/png; killall wayfreeze'
+    bindsym $mod+F12 exec grim -g "$(slurp)" - | wl-copy --type image/png
 
 #
 # Status Bar:

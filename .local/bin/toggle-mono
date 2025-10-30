@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ "$(easyeffects -s output)" = "Mono" ]; then
     easyeffects -l "Default"
