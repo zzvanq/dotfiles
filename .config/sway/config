@@ -2,7 +2,7 @@
 exec swaylock -f --indicator-idle-visible -c 000000
 
 ### for_window configs
-for_window [all] inhibit_idle fullscreen
+for_window [app_id=".*"] inhibit_idle fullscreen
 for_window [app_id="org.qbittorrent.qBittorrent"] floating enable
 for_window [app_id="pcmanfm-qt"] floating enable
 for_window [app_id="AmneziaVPN"] floating enable
@@ -13,7 +13,7 @@ for_window [app_id="org.kde.kruler"] floating enable
 for_window [title="Picture-in-picture"] floating enable
 
 ### assigns
-assign [app_id="rhythmbox"] "R"
+assign [app_id="org.gnome.Rhythmbox3"] "R"
 assign [class="steam"] "G"
 
 ### Variables
@@ -26,7 +26,7 @@ set $term alacritty
 set $menu rofi-run
 
 focus_follows_mouse no
-default_border pixel 2
+default_border pixel 1
 hide_edge_borders smart
 
 output HDMI-A-2 resolution 2560x1440@144Hz position 0,0
@@ -38,6 +38,8 @@ exec swayidle -w \
           timeout 300 'swaylock -f --indicator-idle-visible -c 000000' \
           timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
 
+exec /usr/libexec/xdg-desktop-portal-gtk -r
+exec bash -c "sleep 1 && /usr/libexec/xdg-desktop-portal -r"
 exec copyq 
 exec pipewire 
 exec pipewire-pulse
@@ -50,6 +52,7 @@ input "type:keyboard" {
 
 ### Key bindings
     bindsym $mod+Return exec $term
+    bindsym $mod+Shift+Return exec dupe-app
 
     bindsym $mod+x kill
 
@@ -146,7 +149,7 @@ bindsym $mod+r mode "resize"
 bar {
     position bottom
 
-    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+    status_command while swaybar-custom; do sleep 1; done
 
     colors {
         statusline #ffffff

@@ -1,5 +1,8 @@
 #!/bin/bash
 
-start=$(date +%s); sleep "$1" && spend=$(($(date +%s) - start)); \
-  notify-send "Time's up. '$(date -d @$spend -u +%H:%M:%S)' has passed" && \
-  paplay /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga &
+# start=$(date +%s); sleep "$1" && spend=$(($(date +%s) - start)); \
+#   notify-send "Time's up. '$(date -d @$spend -u +%H:%M:%S)' has passed" && \
+sleep "$1" && \
+  paplay /usr/share/sounds/alsa/Noise.wav && \
+  paplay /usr/share/sounds/alsa/Noise.wav && \
+  paplay /usr/share/sounds/alsa/Noise.wav &
